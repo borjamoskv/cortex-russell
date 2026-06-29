@@ -2,7 +2,7 @@ import os
 import re
 import sqlite3
 
-WORKSPACE_DIR = "/Users/borjafernandezangulo/.gemini/antigravity/scratch/cortex-russell"
+WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(WORKSPACE_DIR, "cortex_ontology.db")
 TARGET_DIRS = [
     os.path.join(WORKSPACE_DIR, "cortex/ontology"),
@@ -101,8 +101,7 @@ def main():
                         row_data = row + [''] * (len(headers) - len(row))
                         # Recortar si tiene mas
                         row_data = row_data[:len(headers)]
-                        # Agregar path de origen
-                        row_data.append(filepath)
+                        row_data.append(os.path.relpath(filepath, WORKSPACE_DIR))
                         
                         placeholders = ', '.join(['?'] * len(row_data))
                         cols_str = ', '.join(headers + ['source_file'])
