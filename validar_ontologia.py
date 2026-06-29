@@ -50,6 +50,10 @@ def main():
                     rel_path = os.path.relpath(filepath, WORKSPACE_DIR)
                     headers, rows = parse_markdown_table(filepath)
                     
+                    # Si no contiene cabecera ni filas, ver si es un archivo de notas/manifiesto
+                    if not headers and not rows:
+                        continue
+                    
                     if not headers:
                         print(f"[WARN] {rel_path}: No se detectó cabecera de tabla válida.")
                         warnings += 1
