@@ -1,0 +1,11 @@
+# Base de datos local autogenerada
+cortex_ontology.db
+
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs locales
+*.log
